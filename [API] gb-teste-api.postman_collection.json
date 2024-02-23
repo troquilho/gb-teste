@@ -1,0 +1,836 @@
+{
+	"info": {
+		"_postman_id": "e97c104d-d996-4254-93b1-b25b16a2c92b",
+		"name": "[API] gb-teste-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7392313"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "POST - Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try{\r",
+									"    pm.environment.set('authToken', pm.response.json().data.token);\r",
+									"}catch(e){\r",
+									"    return false;\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"{{username}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localBasedUrl}}/login",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Config",
+			"item": [
+				{
+					"name": "GET - Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localBasedUrl}}/health",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Dashboard",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localBasedUrl}}/dashboard",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"dashboard"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Adrdress By Zipcode",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localBasedUrl}}/config/cep/80420210",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"config",
+								"cep",
+								"80420210"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categoria",
+			"item": [
+				{
+					"name": "GET - Categoria",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localBasedUrl}}/categoria?paginate=true&limit=1&page=1",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"categoria"
+							],
+							"query": [
+								{
+									"key": "paginate",
+									"value": "true"
+								},
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Categoria",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome_categoria\": \"teste categoria\",\r\n    \"descricao_categoria\": \"descricao teste categoria\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localBasedUrl}}/categoria",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"categoria"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - Categoria",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome_categoria\": \"teste categoria 6\",\r\n    \"descricao_categoria\": \"descricao teste categoria 6\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localBasedUrl}}/categoria/6",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"categoria",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Categoria",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localBasedUrl}}/categoria/1",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"categoria",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produto",
+			"item": [
+				{
+					"name": "GET - Produto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localBasedUrl}}/produto?paginate=true",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"produto"
+							],
+							"query": [
+								{
+									"key": "paginate",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Produto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome_produto\": \"teste produto\",\r\n    \"descricao_produto\": \"descricao teste produto\",\r\n    \"preco_produto\": 20.35,\r\n    \"qtd_estoque\": 45,\r\n    \"categoria_id\": 6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localBasedUrl}}/produto",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"produto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - Produto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome_produto\": \"teste produto 5\",\r\n    \"descricao_produto\": \"descricao teste produto 5\",\r\n    \"preco_produto\": \"20.35\",\r\n    \"qtd_estoque\": 45,\r\n    \"categoria_id\": 6,\r\n    \"imagem\": \"https://fakeimg.pl/150x150/6E6E6E/8DC63F/?text=produto\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localBasedUrl}}/produto/5",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"produto",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Produto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localBasedUrl}}/produto/1",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"produto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Endereço",
+			"item": [
+				{
+					"name": "GET - Endereço",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localBasedUrl}}/endereco?paginate=true",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"endereco"
+							],
+							"query": [
+								{
+									"key": "paginate",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Endereço",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cep\": \"80420210\",\r\n    \"rua\": \"Rua Visconde do Rio Branco\",\r\n    \"bairro\": \"Centro\",\r\n    \"cidade\": \"Curitiba\",\r\n    \"numero\": \"1800\",\r\n    \"uf\": \"PR\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localBasedUrl}}/endereco",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"endereco"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - Endereço",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cep\": \"80420210\",\r\n    \"rua\": \"Rua Visconde do Rio Branco\",\r\n    \"bairro\": \"Centro\",\r\n    \"cidade\": \"Curitiba\",\r\n    \"numero\": \"1800\",\r\n    \"complemento\": \"aasdsad\",\r\n    \"uf\": \"PR\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localBasedUrl}}/endereco/2",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"endereco",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Endereço",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localBasedUrl}}/endereco/1",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"endereco",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "GET - Cliente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localBasedUrl}}/cliente?paginate=true",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"cliente"
+							],
+							"query": [
+								{
+									"key": "paginate",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Cliente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"cliente teste 3\",\r\n    \"email\": \"teste3@email.com\",\r\n    \"username\": \"teste3\",\r\n    \"senha\": \"asdsa\",\r\n    \"cpf\": \"66006078074\",\r\n    \"telefone\": \"65454\",\r\n    \"data_nascimento\": \"2024-01-31\",\r\n    \"endereco_id\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localBasedUrl}}/cliente",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - Cliente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"cliente teste asdsa\",\r\n    \"email\": \"teste3@email.com\",\r\n    \"username\": \"teste3\",\r\n    \"senha\": \"$2a$10$nfG9VAQgQ8ZcMzuxUaQp3.H.9uqJqdLZ0ady98K.QisRzeVRUMN2W\",\r\n    \"cpf\": \"66006078074\",\r\n    \"telefone\": \"65454\",\r\n    \"data_nascimento\": \"2024-01-31T03:00:00.000Z\",\r\n    \"endereco_id\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localBasedUrl}}/cliente/2",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"cliente",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Cliente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localBasedUrl}}/cliente/1",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"cliente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pedidos",
+			"item": [
+				{
+					"name": "GET - Pedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localBasedUrl}}/pedido?paginate=true",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"pedido"
+							],
+							"query": [
+								{
+									"key": "paginate",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Pedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cliente_id\": \"6\",\r\n    \"produtos\": [\r\n        {\r\n            \"produto_id\": 1,\r\n            \"qtd_produto_pedido\": 25\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localBasedUrl}}/pedido",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"pedido"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - Pedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pedido_id\": 5,\r\n    \"produtos\": [\r\n        {\r\n            \"produto_id\": 2,\r\n            \"qtd_produto_pedido\": 6\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localBasedUrl}}/pedido/5",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"pedido",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Pedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{localBasedUrl}}/pedido/1",
+							"host": [
+								"{{localBasedUrl}}"
+							],
+							"path": [
+								"pedido",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

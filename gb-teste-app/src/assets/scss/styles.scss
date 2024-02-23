@@ -1,0 +1,486 @@
+/* Font */
+@font-face {
+    font-family: PoppinsLight;
+    src: url(../fonts/Poppins-Light.ttf);
+}
+
+@font-face {
+    font-family: PoppinsRegular;
+    src: url(../fonts/Poppins-Regular.ttf);
+}
+
+@font-face {
+    font-family: PoppinsMedium;
+    src: url(../fonts/Poppins-Medium.ttf);
+}
+
+@font-face {
+    font-family: PoppinsItalic;
+    src: url(../fonts/Poppins-Italic.ttf);
+}
+
+@font-face {
+    font-family: PoppinsBoldItalic;
+    src: url(../fonts/Poppins-BoldItalic.ttf);
+}
+
+@font-face {
+    font-family: PoppinsSemiBold;
+    src: url(../fonts/Poppins-SemiBold.ttf);
+}
+
+@font-face {
+    font-family: PoppinsBold;
+    src: url(../fonts/Poppins-Bold.ttf);
+}
+
+@font-face {
+    font-family: PoppinsExtraBold;
+    src: url(../fonts/Poppins-ExtraBold.ttf);
+}
+
+@font-face {
+    font-family: PoppinsBlack;
+    src: url(../fonts/Poppins-Black.ttf);
+}
+
+/* BOOTSTRAP */
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+
+$font: "PoppinsRegular";
+$fontL: "PoppinsLight";
+$fontI: "PoppinsItalic";
+$fontM: "PoppinsMedium";
+$fontSm: "PoppinsSemiBold";
+$fontB: "PoppinsBold";
+$fontEB: "PoppinsExtraBold";
+$fontBi: "PoppinsBoldItalic";
+$fontBl: "PoppinsBlack";
+
+$primary: #6e6e6e;
+$darkPrimary: #3f3f3f;
+$secondary: #8dc63f;
+$darkSecondary: #5e8528;
+$gray: #d3d3d3;
+$darkGray: #666666;
+$blue: #3c9cd7;
+$darkBlue: #205677;
+$orange: #f58220;
+
+/* SIDEBAR */
+@import "./sidebar.scss";
+
+// General
+body {
+    font-family: $font;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+        color: $darkSecondary;
+        transition: 0.7s;
+    }
+
+    &.menu {
+        &:hover {
+            color: $darkSecondary;
+            transition: 0.7s;
+        }
+    }
+}
+
+.color-primary {
+    color: $primary;
+}
+.color-dark-primary {
+    color: $darkPrimary;
+}
+.color-gray {
+    color: $gray;
+}
+.color-dark-gray {
+    color: $darkGray;
+}
+.bg-color-primary {
+    background: $primary;
+}
+.bg-color-light-gray {
+    background-color: #dedede;
+}
+.c-pointer {
+    cursor: pointer;
+}
+
+.font-light {
+    font-family: $fontL;
+}
+.font-italic {
+    font-family: $fontI;
+}
+.font-bold-italic {
+    font-family: $fontBi;
+}
+.font-medium {
+    font-family: $fontM;
+}
+.font-semi-bold {
+    font-family: $fontSm;
+}
+.font-bold {
+    font-family: $fontB;
+}
+.font-extra-bold {
+    font-family: $fontEB;
+}
+.font-black {
+    font-family: $fontBl;
+}
+
+.padding-container {
+    padding: 8rem 0rem;
+}
+.padding-card {
+    padding: 4rem 2.5rem;
+}
+
+.card-form {
+    box-shadow: 0 0 35px 2px rgba(0, 0, 0, 0.2);
+    border: 0px;
+}
+.card-form.card-login {
+    width: 30%;
+}
+
+.input-search {
+    background-color: transparent;
+    border: 1px #dfdfdf solid;
+    border-radius: 0px;
+    padding: 0.75rem 1rem;
+    font-size: 16px;
+    font-family: $font;
+    color: #000;
+
+    &::placeholder {
+        font-family: $fontL;
+        font-size: 14px;
+        color: #999999;
+    }
+}
+
+.modal-content {
+    box-shadow: 0px 0px 8px 7px rgba(0, 0, 0, 0.2);
+
+    & .modal-footer {
+        background-color: #dedede;
+        border-top: 0px;
+    }
+}
+
+form {
+    & input,
+    & select {
+        &.form-control {
+            background-color: transparent;
+            border: 1px #dfdfdf solid;
+            border-radius: 0px;
+            padding: 0.75rem 1rem;
+            font-size: 16px;
+            font-family: $font;
+            color: #000;
+
+            &::placeholder {
+                font-family: $fontL;
+                font-size: 14px;
+                color: #999999;
+            }
+        }
+    }
+
+    .form-check-input[type="checkbox"] {
+        border-radius: 0px;
+        box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.3);
+        border: 1px #a5a5a5 solid;
+    }
+
+    & .small-info:hover {
+        cursor: pointer;
+        transition: 0.6s;
+        color: $darkSecondary;
+    }
+
+    & .btn-primary,
+    .btn-danger {
+        font-size: 12px;
+        line-height: 50px;
+        font-weight: 600;
+        float: right;
+        margin-top: 10px;
+        padding: 0rem 2rem;
+        background-color: $blue;
+        border: 1px solid $blue;
+        color: #fefefe;
+        border-radius: 0px;
+        background-image: linear-gradient(
+            45deg,
+            $darkBlue 50%,
+            transparent 50%
+        );
+        background-position: 100%;
+        background-size: 400%;
+        transition: background 750ms ease-in-out;
+        transition: 0.7s;
+
+        &.btn-remove {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            line-height: 48px !important;
+            margin-top: 0rem !important;
+
+            &:hover {
+                border: 1px solid #b02a37 !important;
+                background-position: 0;
+                background-color: #b02a37 !important;
+                background-image: linear-gradient(
+                    45deg,
+                    #b02a37 50%,
+                    transparent 50%
+                );
+                transition: 0.7s;
+                color: #fefefe;
+            }
+        }
+
+        &.signup {
+            background-color: #000;
+            color: white;
+            border: 1px solid #000;
+        }
+
+        &:hover,
+        &:active {
+            border: 1px solid $darkBlue !important;
+            background-position: 0;
+            background-color: $darkBlue !important;
+            transition: 0.7s;
+            color: #fefefe;
+        }
+
+        &:disabled {
+            background-color: #8b8b8b;
+            border-color: #8b8b8b;
+        }
+    }
+}
+
+.btn-group .btn.btn-pagination {
+    font-size: 12px;
+    color: #fefefe;
+    background-color: $primary;
+    border-color: $primary;
+    transition: 0.7s;
+
+    &:hover,
+    &:active {
+        background-color: $primary;
+        transition: 0.7s;
+    }
+    &:disabled {
+        background-color: #8b8b8b;
+        border-color: #8b8b8b;
+    }
+}
+
+.custom-btn {
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    border-radius: 0px;
+    color: #fefefe;
+    background-color: $primary;
+    border: 1px solid $primary;
+    background-image: linear-gradient(30deg, $darkPrimary 50%, transparent 50%);
+    background-position: 100%;
+    background-size: 400%;
+    transition: background 750ms ease-in-out;
+    transition: 0.7s;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    text-transform: uppercase;
+
+    &.btn-app {
+        background-color: $primary;
+        border: 1px solid $primary;
+        color: #fefefe;
+        padding: 0.5rem 1rem;
+
+        &.btt-add {
+            height: 50px;
+            width: 100%;
+            display: block;
+        }
+
+        &.btt-export {
+            height: 50px;
+            width: 100%;
+            display: block;
+            background-color: $darkPrimary;
+            border: 1px solid $darkPrimary;
+            background-image: linear-gradient(
+                30deg,
+                #5702a7 50%,
+                transparent 50%
+            );
+
+            & i {
+                margin-top: 5px;
+                color: #fff;
+                transition: 0.3s;
+            }
+        }
+    }
+
+    & span {
+        font-size: 13px;
+        line-height: 40px;
+        font-weight: 500;
+        padding: 0px 25px;
+        cursor: pointer;
+        transition: 0.1s;
+    }
+
+    &:hover,
+    &:active {
+        border: 1px solid $darkPrimary !important;
+        background-position: 0;
+        background-color: $darkPrimary !important;
+        transition: 0.7s;
+        color: #fefefe;
+
+        &.btt-export {
+            & i {
+                color: #dedede;
+                transition: 0.3s;
+            }
+        }
+    }
+}
+
+.widget-number-link {
+    text-decoration: none;
+
+    .card.widget-number {
+        box-shadow: 5px 5px 11px -8px rgb(0 0 0 / 75%);
+        background-color: #dedede;
+        border: 0px;
+        transition: 0.7s;
+
+        h4 {
+            color: $darkSecondary;
+        }
+        & span {
+            font-size: 50px;
+            text-align: center;
+            color: $darkPrimary;
+        }
+
+        &:hover {
+            background-color: $darkSecondary;
+            transition: 0.7s;
+
+            span,
+            h4,
+            h5 {
+                color: white;
+            }
+        }
+    }
+}
+
+.dropdown-toggle::after,
+.dropdown-toggle::before {
+    display: none !important;
+}
+
+// Loading
+
+.loading {
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+
+    &:before,
+    &:after,
+    div {
+        width: 200px;
+        height: 200px;
+        top: 50%;
+        left: 50%;
+        display: block;
+        position: absolute;
+        border-radius: 50%;
+        border: 4px solid $blue;
+    }
+
+    &:before {
+        content: "";
+        animation: scale 1s ease-in infinite;
+    }
+    &:after {
+        content: "";
+        animation: scale 2s ease-in infinite;
+    }
+
+    div {
+        animation: scale 3s ease-in infinite;
+    }
+}
+
+.loading.open {
+    display: block;
+    position: fixed;
+    top: 0;
+    z-index: 99999;
+}
+
+@keyframes scale {
+    from {
+        transform: translate(-50%, -50%) scale(0, 0);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1, 1);
+    }
+}
+
+@media (max-width: 992px) {
+    .custom-navbar {
+        .navbar-collapse {
+            justify-content: center;
+            & .nav-item {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    }
+
+    .card-data {
+        background-color: #ebebeb;
+        box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.2);
+        border-radius: 8px !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .card-form.card-login {
+        padding: 0.5rem;
+        width: 100%;
+
+        .padding-card {
+            padding: 2rem 1.5rem;
+        }
+    }
+}

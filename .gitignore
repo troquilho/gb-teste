@@ -1,0 +1,12 @@
+# dependencies
+gb-teste-api/node_modules/
+gb-teste-app/node_modules/
+
+# MISC
+.env
+
+gb-teste-api/package-lock.json
+gb-teste-app/package-lock.json
+
+gb-teste-api/.env
+gb-teste-app/.env

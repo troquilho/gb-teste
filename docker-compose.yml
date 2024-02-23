@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+    db:
+        image: postgres:latest
+        volumes:
+            - db_data:/var/lib/postgresql/data
+            - ./ddl_1.sql:/docker-entrypoint-initdb.d/ddl_1.sql
+        environment:
+            POSTGRES_DB: ${POSTGRES_DB:-gb_teste}
+            POSTGRES_USER: ${POSTGRES_USER:-usuario_default}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-senha_default}
+        ports:
+            - "5432:5432"
+
+volumes:
+    db_data:
