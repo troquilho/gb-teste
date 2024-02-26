@@ -60,9 +60,15 @@ export default async function (fastify, opts) {
                             expiresIn: "4h",
                         }
                     );
+                    console.log(tokenObj);
                     return reply.code(200).send({
                         status: "success",
                         data: { token },
+                    });
+                } else {
+                    reply.code(401).send({
+                        status: "error",
+                        message: "Usuário ou senha inválidos",
                     });
                 }
             } catch (error) {
