@@ -44,7 +44,7 @@ function Pedidos() {
     }, [page, refetchTrigger]);
 
     const refreshItems = async () => {
-        setShowModalEditAdd(!showModalEditAdd);
+        setShowModalEditAdd(false);
         setItem({});
         setProductsInOrder([]);
         setPage(1);
@@ -60,6 +60,7 @@ function Pedidos() {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
+        console.log(name, value);
         setItem((prevItem) => ({
             ...prevItem,
             [name]: value,
@@ -159,7 +160,7 @@ function Pedidos() {
                                     setItem({});
                                     setProductsInOrder([]);
                                     setErrorMessage("");
-                                    setShowModalEditAdd(!showModalEditAdd);
+                                    setShowModalEditAdd(true);
                                 }}
                             >
                                 Atrelar Pedido
@@ -259,7 +260,7 @@ function Pedidos() {
                                                     className="text-primary font-semi-bold text-center"
                                                     onClick={() => {
                                                         setShowModalEditAdd(
-                                                            !showModalEditAdd
+                                                            true
                                                         );
                                                         setProductsInOrder(
                                                             data.produtos
@@ -305,7 +306,7 @@ function Pedidos() {
             <CustomModal
                 show={showModalEditAdd}
                 onHide={() => {
-                    setShowModalEditAdd(!showModalEditAdd);
+                    setShowModalEditAdd(false);
                 }}
                 title={item.pedido_id ? "Editar Pedido" : "Atrelar Pedido"}
                 submitLabel={
@@ -313,7 +314,9 @@ function Pedidos() {
                 }
                 onSubmit={submitData}
                 errorMessage={errorMessage}
-                buttonCanBeDisabled={!productsInOrder.length}
+                buttonCanBeDisabled={
+                    !productsInOrder.length || !item.cliente_id
+                }
                 buttonWithoutLength={true}
             >
                 <Row className="mb-0 mb-md-3">

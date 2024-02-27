@@ -1,82 +1,19 @@
-import bcrypt from "bcryptjs";
+import AuthController from "../controllers/authController.js";
+import { loginSchema } from "../docs/request/authSchemas.js";
+import { loginSuccessResponse, loginErrorResponse } from "../docs/response/authResponses.js";
 
 export default async function (fastify, opts) {
     fastify.post(
         "/login",
         {
             schema: {
-                body: {
-                    type: "object",
-                    required: ["username", "password"],
-                    properties: {
-                        username: { type: "string" },
-                        password: { type: "string" },
-                    },
-                },
+                body: loginSchema,
                 response: {
-                    200: {
-                        type: "object",
-                        properties: {
-                            status: { type: "string", enum: ["success"] },
-                            data: {
-                                type: "object",
-                                properties: {
-                                    token: { type: "string" },
-                                },
-                            },
-                        },
-                    },
-                    401: {
-                        type: "object",
-                        properties: {
-                            status: { type: "string", enum: ["error"] },
-                            message: { type: "string" },
-                        },
-                    },
+                    ...loginSuccessResponse,
+                    ...loginErrorResponse,
                 },
             },
         },
-        async (request, reply) => {
-            const { username, password } = request.body;
-
-            try {
-                const passwordMatch = await bcrypt.compare(
-                    password,
-                    process.env.NODE_PASSWORD_ENCRYPTED
-                );
-
-                if (username === process.env.NODE_USER && passwordMatch) {
-                    const expiration = new Date().setHours(
-                        new Date().getHours() + 4
-                    );
-                    let tokenObj = {
-                        username,
-                        expiration,
-                    };
-                    const token = fastify.jwt.sign(
-                        { tokenObj },
-                        process.env.NODE_KEY,
-                        {
-                            expiresIn: "4h",
-                        }
-                    );
-                    console.log(tokenObj);
-                    return reply.code(200).send({
-                        status: "success",
-                        data: { token },
-                    });
-                } else {
-                    reply.code(401).send({
-                        status: "error",
-                        message: "Usuário ou senha inválidos",
-                    });
-                }
-            } catch (error) {
-                reply.code(401).send({
-                    status: "error",
-                    message: "Usuário ou senha inválidos",
-                });
-            }
-        }
+        AuthController.login
     );
 }

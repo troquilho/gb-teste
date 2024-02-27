@@ -37,7 +37,8 @@ function Produtos() {
     }, [page, refetchTrigger]);
 
     const refreshItems = async () => {
-        setShowModalEditAdd(!showModalEditAdd);
+        setShowModalEditAdd(false);
+        setLoad(false);
         setItem({});
         setErrorMessage("");
         setPage(1);
@@ -128,7 +129,7 @@ function Produtos() {
                                 className="custom-btn btn-app btt-add"
                                 onClick={() => {
                                     setItem({});
-                                    setShowModalEditAdd(!showModalEditAdd);
+                                    setShowModalEditAdd(true);
                                 }}
                             >
                                 Adicionar Produto
@@ -212,7 +213,7 @@ function Produtos() {
                                                     className="text-primary font-semi-bold text-center"
                                                     onClick={() => {
                                                         setShowModalEditAdd(
-                                                            !showModalEditAdd
+                                                            true
                                                         );
                                                         setItem(data);
                                                     }}
@@ -254,7 +255,7 @@ function Produtos() {
             </Sidebar>
             <CustomModal
                 show={showModalEditAdd}
-                onHide={() => setShowModalEditAdd(!showModalEditAdd)}
+                onHide={() => setShowModalEditAdd(false)}
                 title={item.produto_id ? "Editar Produto" : "Adicionar Produto"}
                 submitLabel={
                     item.produto_id ? "Salvar Alterações" : "Adicionar Produto"

@@ -62,3 +62,7 @@ export const generateOrderNumber = (length = 5) => {
     }
     return res;
 };
+
+export const normalizeNumber = (number) => {
+    return number.replace(/[^\d]+/g, "");
+}

@@ -6,7 +6,7 @@ import jwt from "@fastify/jwt";
 import cors from "@fastify/cors";
 import appConfig from "./config/appConfig.js";
 import dbPlugin from "./plugins/db.js";
-import jwtAuthenticator from "./middleware/index.js";
+import jwtAuthenticator from "./middlewares/index.js";
 
 import categoriaRoute from "./routes/categoriaRoute.js";
 import enderecoRoute from "./routes/enderecoRoute.js";
